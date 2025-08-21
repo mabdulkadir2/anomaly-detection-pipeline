@@ -5,7 +5,7 @@ A comprehensive real-time anomaly detection system built with Python and Apache 
 ### Goals
 - Kafka producers/consumers and streaming basics
 - Implement anomaly detection (from simple thresholds to ML)
-- Build a small real-time dashboard
+- Build a real-time dashboard
 - Containerize and optionally scale with Spark/Kubernetes
 
 ### Tech Stack
