@@ -32,8 +32,8 @@ A comprehensive real-time anomaly detection system built with Python and Apache 
 ### Project Structure
 ```
 anomaly-detection-pipeline/
-├── ingestion/           # Data ingestion components
-├── processing/          # Stream processing logic
+├── ingestion/          # Data ingestion components
+├── processing/         # Stream processing logic
 ├── models/             # ML models and training
 ├── dashboard/          # Web dashboard and API
 ├── infra/              # Infrastructure and deployment
