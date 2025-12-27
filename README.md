@@ -9,7 +9,7 @@ A comprehensive real-time anomaly detection system built with Python and Apache 
 - Containerize and optionally scale with Spark/Kubernetes
 
 ### Tech Stack
-- Python 3.10+
+- Python
 - Apache Kafka (via Docker)
 - FastAPI (API + optional WebSocket)
 - Spark Structured Streaming, Redis, PostgreSQL, Prometheus/Grafana
