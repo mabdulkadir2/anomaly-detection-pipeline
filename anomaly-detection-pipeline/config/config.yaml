@@ -1,0 +1,185 @@
+# Anomaly Detection Pipeline Configuration
+
+# Kafka Configuration
+kafka:
+  bootstrap_servers:
+    - "localhost:9092"
+  input_topic: "raw-data"
+  output_topic: "anomaly-results"
+  group_id: "anomaly-detection-group"
+  producer_config:
+    acks: "all"
+    retries: 3
+    batch_size: 16384
+    linger_ms: 10
+  consumer_config:
+    auto_offset_reset: "latest"
+    enable_auto_commit: true
+    auto_commit_interval_ms: 1000
+
+# Data Ingestion Configuration
+ingestion:
+  producers:
+    - name: "synthetic-producer"
+      type: "synthetic"
+      source: "sensor_01"
+      interval: 1.0
+      max_messages: 1000
+      anomaly_probability: 0.05
+    - name: "file-producer"
+      type: "file"
+      source: "file_data"
+      file_path: "data/input/sample_data.csv"
+      interval: 0.5
+
+# Stream Processing Configuration
+processing:
+  window_size: 100
+  batch_size: 1000
+  checkpoint_interval: 10
+  watermark_delay: 30
+  transformation:
+    normalize: true
+    feature_engineering: true
+    window_aggregation: true
+
+# Anomaly Detection Configuration
+anomaly_detection:
+  method: "ensemble"  # Options: isolation_forest, lof, one_class_svm, statistical, ensemble
+  threshold: 0.8
+  detectors:
+    isolation_forest:
+      contamination: 0.1
+      n_estimators: 100
+      random_state: 42
+    lof:
+      contamination: 0.1
+      n_neighbors: 20
+    one_class_svm:
+      nu: 0.1
+      kernel: "rbf"
+      gamma: "scale"
+    statistical:
+      method: "zscore"  # Options: zscore, iqr
+      threshold: 3.0
+      window_size: 100
+  ensemble:
+    weights:
+      isolation_forest: 0.4
+      lof: 0.3
+      statistical: 0.3
+    threshold: 0.5
+
+# Model Training Configuration
+model_training:
+  models_dir: "models/saved"
+  experiments_dir: "models/experiments"
+  feature_columns: ["value"]
+  label_column: "is_anomaly"
+  train_test_split: 0.7
+  validation_split: 0.2
+  hyperparameter_tuning:
+    enabled: true
+    cv_folds: 5
+    n_jobs: -1
+  auto_ml:
+    enabled: true
+    model_types:
+      - "isolation_forest"
+      - "statistical"
+      - "ensemble"
+    max_trials: 10
+
+# Dashboard Configuration
+dashboard:
+  host: "0.0.0.0"
+  port: 8000
+  websocket_enabled: true
+  real_time_updates: true
+  refresh_interval: 1.0
+  max_anomalies_display: 1000
+  charts:
+    anomaly_trend: true
+    source_distribution: true
+    performance_metrics: true
+
+# Database Configuration
+database:
+  postgresql:
+    host: "localhost"
+    port: 5432
+    database: "anomaly_detection"
+    username: "admin"
+    password: "password"
+    pool_size: 10
+  redis:
+    host: "localhost"
+    port: 6379
+    db: 0
+    max_connections: 20
+
+# Monitoring Configuration
+monitoring:
+  prometheus:
+    enabled: true
+    port: 9090
+    metrics_path: "/metrics"
+  grafana:
+    enabled: true
+    port: 3000
+    admin_user: "admin"
+    admin_password: "admin"
+  alerting:
+    enabled: true
+    alert_manager_url: "http://localhost:9093"
+    rules:
+      - name: "high_anomaly_rate"
+        condition: "anomaly_rate > 0.1"
+        severity: "warning"
+      - name: "service_down"
+        condition: "service_health == 0"
+        severity: "critical"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/anomaly_detection.log"
+  max_size: "100MB"
+  backup_count: 5
+  console_output: true
+
+# Security Configuration
+security:
+  authentication:
+    enabled: false
+    method: "jwt"
+    secret_key: "your-secret-key"
+  authorization:
+    enabled: false
+    roles:
+      - "admin"
+      - "user"
+      - "viewer"
+
+# Performance Configuration
+performance:
+  max_workers: 4
+  memory_limit: "2GB"
+  cpu_limit: "2"
+  batch_processing: true
+  caching:
+    enabled: true
+    ttl: 3600
+    max_size: 10000
+
+# Development Configuration
+development:
+  debug: false
+  hot_reload: true
+  profiling: false
+  test_mode: false
+
+
+
+
