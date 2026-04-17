@@ -2,7 +2,7 @@
 
 A comprehensive real-time anomaly detection system built with Python and Apache Kafka for streaming data processing and machine learning-based anomaly detection.
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
