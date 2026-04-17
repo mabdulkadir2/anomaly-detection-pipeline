@@ -17,7 +17,7 @@ A comprehensive real-time anomaly detection system built with Python and Apache 
                     └─────────────┘    └─────────────┘
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 anomaly-detection-pipeline/
@@ -32,7 +32,7 @@ anomaly-detection-pipeline/
 └── scripts/            # Utility scripts
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 1. **Setup Infrastructure**
    ```bash
@@ -60,7 +60,7 @@ anomaly-detection-pipeline/
    python dashboard/app.py
    ```
 
-## 🛠️ Technologies
+## Technologies
 
 - **Streaming**: Apache Kafka, Kafka Streams
 - **Processing**: Apache Spark, Python
@@ -69,7 +69,7 @@ anomaly-detection-pipeline/
 - **Infrastructure**: Docker, Kubernetes
 - **Monitoring**: Prometheus, Grafana
 
-## 📊 Features
+## Features
 
 - Real-time data ingestion from multiple sources
 - Scalable stream processing with Kafka
@@ -78,7 +78,7 @@ anomaly-detection-pipeline/
 - Model training and deployment pipeline
 - Comprehensive monitoring and logging
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -86,6 +86,6 @@ anomaly-detection-pipeline/
 4. Add tests
 5. Submit a pull request
 
-## 📄 License
+## License
 
 MIT License - see LICENSE file for details
